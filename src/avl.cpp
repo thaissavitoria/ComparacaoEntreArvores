@@ -63,6 +63,19 @@ void antecessorAVL(AVLTree **t, AVLTree *aux)
 	free(aux);
 }
 
+void pesquisaAVL(AVLTree **t, AVLTree **aux, RecordAVL r){
+
+	if(*t == NULL){
+		return;
+	}
+
+	if((*t)->reg.key > r.key){ pesquisaAVL(&(*t)->left, aux, r); return;}
+	if((*t)->reg.key < r.key){ pesquisaAVL(&(*t)->right, aux, r); return;}
+
+	*aux = *t;
+}
+
+
 void rebalanceAVLTree(AVLTree **t)
 {
 	int balance;
@@ -106,9 +119,7 @@ void removeAVLTree(AVLTree **t, AVLTree **f, RecordAVL r, int *cont)
 		removeAVLTree(&(*t)->right, t, r, cont);
 		return;
 	}
-
-	cout << "NÓ ENCONTRADO: " << setw(4) << fixed << setprecision(4) << (*t)->reg.key << endl;
-
+	
 	if ((*t)->right == NULL)
 	{
 		aux = *t;

@@ -13,6 +13,17 @@ void CreateRBTree(RBTree **root)
     *root = nill;
 }
 
+void searchRB(RBTree *aux, RecordRB z)
+{
+    while (aux != nill && z.key != aux->reg.key)
+    {
+        if (z.key < aux->reg.key)
+            aux = aux->esq;
+        else
+            aux = aux->dir;
+    }
+}
+
 void insertFixUp(RBTree **raiz, RBTree *child)
 {
     RBTree *tio;
@@ -113,8 +124,9 @@ void insertRBTree(RBTree **t, RBTree **pai, RBTree **raiz, RecordRB r)
     }
 }
 
-void pesquisaRB(RBTree **raiz, RBTree *aux, RecordRB r,int *cont)
+void removeSearchRB(RBTree **raiz, RBTree *aux, RecordRB r, int *cont)
 {
+
     while (aux != nill && r.key != aux->reg.key)
     {
         if (r.key < aux->reg.key)
@@ -124,8 +136,7 @@ void pesquisaRB(RBTree **raiz, RBTree *aux, RecordRB r,int *cont)
     }
     if (aux->reg.key == r.key)
     {
-        cout << "NÓ ENCONTRADO: " << r.key << "." << endl;
-        removeRB(raiz, aux, aux, aux,cont);
+        removeRB(raiz, aux, aux, aux, cont);
     }
 }
 
@@ -273,7 +284,7 @@ void transplant(RBTree **root, RBTree *aux, RBTree *auxchild)
 
 void removeRB(RBTree **root, RBTree *z, RBTree *y, RBTree *x, int *cont)
 {
-    bool corini = y->cor; 
+    bool corini = y->cor;
 
     (*cont)++;
     if (z->esq == nill)
@@ -299,7 +310,7 @@ void removeRB(RBTree **root, RBTree *z, RBTree *y, RBTree *x, int *cont)
         else
         {
             transplant(root, y, y->dir);
-            y->dir = z->dir; 
+            y->dir = z->dir;
             y->dir->pai = y;
         }
         transplant(root, z, y);

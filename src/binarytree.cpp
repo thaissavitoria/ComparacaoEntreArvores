@@ -35,6 +35,29 @@ void insertBinaryTree(BinaryTree **t, RecordBin r)
   }
 }
 
+void pesquisaBinaryTree(BinaryTree **t, BinaryTree **aux, RecordBin r)
+{
+
+  if (*t == NULL)
+  {
+    return;
+  }
+
+  if ((*t)->reg.key > r.key)
+  {
+    pesquisaBinaryTree(&(*t)->esq, aux, r);
+    return;
+  }
+  if ((*t)->reg.key < r.key)
+  {
+    pesquisaBinaryTree(&(*t)->dir, aux, r);
+    return;
+  }
+
+  *aux = *t;
+}
+
+
 void antecessor(BinaryTree **t, BinaryTree *aux)
 {
 
@@ -50,7 +73,7 @@ void antecessor(BinaryTree **t, BinaryTree *aux)
   free(aux);
 }
 
-void removeBinaryTree(BinaryTree **t, RecordBin r,int *cont)
+void removeBinaryTree(BinaryTree **t, RecordBin r, int *cont)
 {
 
   (*cont)++;
@@ -63,12 +86,12 @@ void removeBinaryTree(BinaryTree **t, RecordBin r,int *cont)
 
   if (r.key < (*t)->reg.key)
   {
-    removeBinaryTree(&(*t)->esq, r,cont);
+    removeBinaryTree(&(*t)->esq, r, cont);
     return;
   }
   if (r.key > (*t)->reg.key)
   {
-    removeBinaryTree(&(*t)->dir, r,cont);
+    removeBinaryTree(&(*t)->dir, r, cont);
     return;
   }
 
@@ -85,13 +108,9 @@ void removeBinaryTree(BinaryTree **t, RecordBin r,int *cont)
     return;
   }
 
-
-	cout << "NÓ ENCONTRADO: " << setw(4) << fixed << setprecision(4) << (*t)->reg.key << endl;
-
   aux = *t;
   *t = (*t)->dir;
 }
-
 
 void centralBin(BinaryTree *t)
 {

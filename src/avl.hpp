@@ -27,6 +27,7 @@ void insertAVLTree(AVLTree **t, RecordAVL r);
 // muda o remove devido a necessidade de ponteiro para sub-árvore desbalanceada
 void removeAVLTree(AVLTree **t, AVLTree **f, RecordAVL r,int *cont);
 void antecessorAVL(AVLTree **t, AVLTree *aux);
+void pesquisaAVL(AVLTree **t, AVLTree **aux, RecordAVL r);
 void rebalanceAVLTree(AVLTree **t);
 
 void centralAVL(AVLTree *t);

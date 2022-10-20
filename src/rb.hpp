@@ -2,6 +2,7 @@
 #define RB_HPP
 
 #include <iostream>
+#include <chrono>
 
 using namespace std;
 
@@ -26,9 +27,12 @@ void CreateRBTree(RBTree **root);
 void rotacaoSimplesEsquerda(RBTree **raiz, RBTree *child);
 void rotacaoSimplesDireita(RBTree **raiz, RBTree *child);
 
+void searchRB(RBTree *aux, RecordRB z);
+
+
 void insertFixUp(RBTree **raiz, RBTree *child);
 void insertRBTree(RBTree **t, RBTree **pai, RBTree **raiz, RecordRB r);
-void pesquisaRB(RBTree **raiz, RBTree *aux, RecordRB r,int *cont);
+void removeSearchRB(RBTree **raiz, RBTree *aux, RecordRB r,int *cont);
 
 RBTree *successor(RBTree *aux);
 void transplant(RBTree **root, RBTree *aux, RBTree *auxchild);
