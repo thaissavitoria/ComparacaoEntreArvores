@@ -732,8 +732,6 @@ void criaUMap(int qtddados, unordered_map<double, int> *UMap)
     string line;
     ifstream arq;
 
-    std::chrono::steady_clock::time_point comeco = std::chrono::steady_clock::now();
-
     arq.open("arq500000.txt");
 
     if (!arq.is_open())
@@ -743,6 +741,8 @@ void criaUMap(int qtddados, unordered_map<double, int> *UMap)
 
     else
     {
+        std::chrono::steady_clock::time_point comeco = std::chrono::steady_clock::now();
+
         for (int i = 0; i < qtddados; i++)
         {
             getline(arq, line);
@@ -901,8 +901,8 @@ void criaOrderedVector(int qtddados, set<double> *vec)
 
             itr = vec->find(numins);
 
-                if (itr == vec->end())
-                    vec->insert(numins);
+            if (itr == vec->end())
+                vec->insert(numins);
         }
         std::chrono::steady_clock::time_point fim = std::chrono::steady_clock::now();
         cout << "O tempo para criar o  com um arquivo ordenado, sem inserir números repetidos, de " << qtddados << " entradas é de " << std::chrono::duration_cast<std::chrono::milliseconds>(fim - comeco).count() << " ms.\n";
@@ -910,7 +910,6 @@ void criaOrderedVector(int qtddados, set<double> *vec)
     }
     arq.close();
 }
-
 
 void testOrderedVector()
 {
